@@ -151,3 +151,12 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 #derivada metodo 1
+cv2.imshow('Imagen1', ima1)
+cv2.imshow('Imagen2', ima2)
+print ('derivada metodo 1')
+dx = np.diff(ima1)
+dy = np.diff(ima2)
+d = dy/dx
+print(d)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
