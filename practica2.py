@@ -160,3 +160,27 @@ d = dy/dx
 print(d)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+#raiz metodo 1
+cv2.imshow('Imagen1', ima1)
+cv2.imshow('Imagen2', ima2)
+print ('raiz metodo 1')
+print (ima1**(0.5))
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+#raiz meodo 2 
+cv2.imshow('Imagen1', ima1)
+cv2.imshow('Imagen2', ima2)
+print ('raiz metodo 2')
+print (pow(ima1,0.5))
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+#raiz meodo 3 
+cv2.imshow('Imagen1', ima1)
+cv2.imshow('Imagen2', ima2)
+print ('raiz metodo 3')
+print (np.sqrt(ima1))
+cv2.waitKey(0)
+cv2.destroyAllWindows()
