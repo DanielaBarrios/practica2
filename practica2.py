@@ -190,9 +190,75 @@ def potencia3(m1, m2):
     cv2.imshow('Imagen2', m2)
     mr = cv2.pow(m1,2)
     cv2.imshow("potencia3",mr)
-    cv2.waitKey(0)    
+    cv2.waitKey(0)  
     
+def conjuncion(m1, m2):
+    cv2.destroyAllWindows()
+    m1 = cv2.resize(m1, (300,250))
+    m2 = cv2.resize(m2, (300,250))
+    cv2.imshow('Imagen1', m1)
+    cv2.imshow('Imagen2', m2)
+    mr = cv2.bitwise_and(m1, m2)
+    cv2.imshow("conjuncion",mr)
+    cv2.waitKey(0)
+    
+def disyuncion(m1, m2):
+    cv2.destroyAllWindows()
+    m1 = cv2.resize(m1, (300,250))
+    m2 = cv2.resize(m2, (300,250))
+    cv2.imshow('Imagen1', m1)
+    cv2.imshow('Imagen2', m2)
+    mr = cv2.bitwise_or(m1,m2)
+    cv2.imshow("disyuncion",mr)
+    cv2.waitKey(0)
+    
+def negacion(m1, m2):
+    cv2.destroyAllWindows()
+    m1 = cv2.resize(m1, (300,250))
+    m2 = cv2.resize(m2, (300,250))
+    cv2.imshow('Imagen1', m1)
+    cv2.imshow('Imagen2', m2)
+    mr = cv2.bitwise_not(m1)
+    cv2.imshow("negacion",mr)
+    cv2.waitKey(0)
+    
+def trasafin(m1, m2):
+    cv2.destroyAllWindows()
+    m1 = cv2.resize(m1, (300,250))
+    m2 = cv2.resize(m2, (300,250))
+    cv2.imshow('Imagen1', m1)
+    cv2.imshow('Imagen2', m2)
+    ancho = m1.shape[1] #columnas
+    alto = m1.shape[0] # filas
+    mr = np.float32([[1,0,100],[0,1,150]])
+    imageOut = cv2.warpAffine(m1,mr,(ancho,alto))
+    cv2.imshow("traslacion afin",imageOut)
+    cv2.waitKey(0)
+    
+def escalado(m1, m2):
+    cv2.destroyAllWindows()
+    m1 = cv2.resize(m1, (300,250))
+    m2 = cv2.resize(m2, (300,250))
+    cv2.imshow('Imagen1', m1)
+    cv2.imshow('Imagen2', m2)
+    mr = cv2.resize(m1,(600,300), interpolation=cv2.INTER_CUBIC)
+    cv2.imshow("escalado",mr)
+    cv2.waitKey(0)
+    
+def rotacion(m1, m2):
+    cv2.destroyAllWindows()
+    m1 = cv2.resize(m1, (300,250))
+    m2 = cv2.resize(m2, (300,250))
+    cv2.imshow('Imagen1', m1)
+    cv2.imshow('Imagen2', m2)
+    ancho = m1.shape[1] #columnas
+    alto = m1.shape[0] # filas
+    mr = cv2.getRotationMatrix2D((ancho//2,alto//2),15,1)
+    imageOut = cv2.warpAffine(m1,mr,(ancho,alto))
+    cv2.imshow("rotacion",imageOut)
+    cv2.waitKey(0)
 
+    
 ima1 = cv2.imread('foto1.png')
 ima2 = cv2.imread('foto2.png')
 ima1 = cv2.resize(ima1, (300,250))
@@ -271,6 +337,30 @@ while True:
         
     if x == ord("d"):
         potencia3(ima1,ima2)
+        x=cv2.waitKey(0) 
+        
+    if x == ord("d"):
+        conjuncion(ima1,ima2)
+        x=cv2.waitKey(0)  
+        
+    if x == ord("d"):
+        disyuncion(ima1,ima2)
+        x=cv2.waitKey(0)        
+        
+    if x == ord("d"):
+        negacion(ima1,ima2)
+        x=cv2.waitKey(0)
+        
+    if x == ord("d"):
+        trasafin(ima1,ima2)
+        x=cv2.waitKey(0)
+        
+    if x == ord("d"):
+        escalado(ima1,ima2)
+        x=cv2.waitKey(0)
+        
+    if x == ord("d"):
+        rotacion(ima1,ima2)
         x=cv2.waitKey(0)        
         
         cv2.destroyAllWindows()        
