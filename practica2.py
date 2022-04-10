@@ -257,7 +257,40 @@ def rotacion(m1, m2):
     imageOut = cv2.warpAffine(m1,mr,(ancho,alto))
     cv2.imshow("rotacion",imageOut)
     cv2.waitKey(0)
-
+    
+def traspuesta(m1, m2):
+    cv2.destroyAllWindows()
+    m1 = cv2.resize(m1, (300,252))
+    m2 = cv2.resize(m2, (302,252))
+    cv2.imshow('Imagen1', m1)
+    cv2.imshow('Imagen2', m2)
+    mr = np.transpose(m2).shape
+    mr = cv2.resize(mr,(520,520))
+    cv2.imshow("traspuesta",mr)
+    cv2.waitKey(0)
+    
+def proyeccion(m1, m2):
+    cv2.destroyAllWindows()
+    m1 = cv2.resize(m1, (300,252))
+    m2 = cv2.resize(m2, (302,252))
+    cv2.imshow('Imagen1', m1)
+    cv2.imshow('Imagen2', m2)
+    m1 = cv2.cvtColor(m1,cv2.COLOR_BGR2GRAY)
+    ret,thresh1=cv2.threshold(m1,130,255,cv2.THRESH_BINARY)
+    (h, w) = thresh1.shape
+    a = [0 for z in range(0, h)]
+    for j in range (0, h):
+        for i in range (0, h):
+            if thresh1 [j, i] == 0:
+                a[j]+=1
+                thresh1 [j, i] = 255
+    for j in range (0, h):
+        for i in range ((h-a [j]), h):
+            thresh1 [i, j] = 0
+    plt.imshow(thresh1,cmap=plt.gray())
+    plt.show()
+    cv2.imshow('img',thresh1)    
+    
     
 ima1 = cv2.imread('foto1.png')
 ima2 = cv2.imread('foto2.png')
@@ -361,6 +394,14 @@ while True:
         
     if x == ord("d"):
         rotacion(ima1,ima2)
+        x=cv2.waitKey(0)    
+        
+    if x == ord("d"):
+        traspuesta(ima1,ima2)
+        x=cv2.waitKey(0)      
+        
+    if x == ord("d"):
+        proyeccion(ima1,ima2)
         x=cv2.waitKey(0)        
         
         cv2.destroyAllWindows()        
